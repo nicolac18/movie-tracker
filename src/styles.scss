@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import './app/style/ratio.scss';
+@import './app/style/settings.scss';
+
+body,
+html,
+md-sidenav-container {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input {
+  color: $black-light;
+  font-family: $font-main;
+}
