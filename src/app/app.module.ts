@@ -12,7 +12,10 @@ import { MaterialModule } from '@app/theme/material.module';
 
 import { AppComponent } from '@app/app.component';
 
+import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from '@app/shared/shared.module';
+
+import { HomeModule } from '@app/home/home.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { SharedModule } from '@app/shared/shared.module';
 
     MaterialModule,
 
-    SharedModule
+    SharedModule,
+    CoreModule,
+
+    HomeModule
   ],
   providers: [],
   bootstrap: [

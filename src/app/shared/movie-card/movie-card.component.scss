@@ -1,0 +1,12 @@
+@import '~app/style/style';
+
+.movie-card {
+  display: block;
+  margin: 5px;
+  padding: 0;
+  position: relative;
+
+  .container {
+    @include maintain-ratio(2 3);
+  }
+}

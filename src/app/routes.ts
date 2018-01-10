@@ -1,5 +1,10 @@
 import { Routes } from '@angular/router';
 
-export const ROUTES: Routes = [
+import { HomeComponent } from '@app/home/home.component';
 
+export const ROUTES: Routes = [
+  { path: 'home', component: HomeComponent },
+
+  // default
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];

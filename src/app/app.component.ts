@@ -21,7 +21,10 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.menu = [];
+    this.menu = [{
+      link: '.',
+      name: 'home'
+    }];
   }
 
   ngOnDestroy(): void {
