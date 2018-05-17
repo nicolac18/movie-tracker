@@ -1,3 +1,24 @@
 <div class="home">
 
+  <!-- <div class="watchlist">
+    <h2 class="subtitle">Watchlist</h2>
+    <div class="scroll-wrap" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap="nowrap">
+      <app-movie-card fxFlex="0 0 18.75%" *ngFor="let movie of watchlistMovies" [movie]="movie"></app-movie-card>
+    </div>
+  </div> -->
+
+  <div class="popular">
+    <h2 class="subtitle">Popular</h2>
+    <div class="scroll-wrap" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap="wrap">
+      <app-movie-card fxFlex="0 0 12.5%" *ngFor="let movie of popularMovies" (onAdd)="add($event)" [movie]="movie"></app-movie-card>
+    </div>
+  </div>
+
+  <div class="now-playing">
+    <h2 class="subtitle">Now Playing</h2>
+    <div class="scroll-wrap" fxLayout="row" fxLayoutAlign="start start" fxLayoutWrap="wrap">
+      <app-movie-card fxFlex="0 0 12.5%" *ngFor="let movie of nowPlayMovies" [movie]="movie"></app-movie-card>
+    </div>
+  </div>
+
 </div>

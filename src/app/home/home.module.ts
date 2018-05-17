@@ -3,7 +3,6 @@ import { SharedModule } from '@app/shared/shared.module';
 
 import { HomeComponent } from './home.component';
 
-
 @NgModule({
   imports: [
     SharedModule

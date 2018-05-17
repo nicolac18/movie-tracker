@@ -2,7 +2,13 @@
   <div class="container">
     <div class="content">
 
-      {{ name }}
+      <p class="title" *ngIf="!movie.poster_path">{{ movie.title }}</p>
+      <img class="image" *ngIf="movie.poster_path" [src]="baseImgUrl + movie.poster_path">
+
+      <div class="tools">
+        <i class="material-icons" (click)="add('library')">add</i>
+        <i class="material-icons" (click)="add('watchlist')">remove_red_eye</i>
+      </div>
 
     </div>
   </div>
