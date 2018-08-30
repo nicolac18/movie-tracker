@@ -6,8 +6,10 @@
       <img class="image" *ngIf="movie.poster_path" [src]="baseImgUrl + movie.poster_path">
 
       <div class="tools">
-        <i class="material-icons" (click)="add('library')">add</i>
-        <i class="material-icons" (click)="add('watchlist')">remove_red_eye</i>
+        <i class="material-icons" *ngIf="!movie.wishlist" (click)="toggle({ wishlist: true })">add</i>
+        <i class="material-icons" *ngIf="movie.wishlist" (click)="toggle({ wishlist: false })">remove</i>
+
+        <i class="material-icons" [ngClass]="{ 'active': movie.watched }" (click)="toggle({ watchlist: movie.watched ? false : true })">remove_red_eye</i>
       </div>
 
     </div>

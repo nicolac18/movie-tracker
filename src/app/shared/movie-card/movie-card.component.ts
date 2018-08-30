@@ -11,7 +11,7 @@ export class MovieCardComponent implements OnInit {
   baseImgUrl: string;
 
   @Input() movie: Movie;
-  @Output() onAdd = new EventEmitter();
+  @Output() onToggle = new EventEmitter();
 
   constructor() { }
 
@@ -19,10 +19,10 @@ export class MovieCardComponent implements OnInit {
     this.baseImgUrl = 'https://image.tmdb.org/t/p/w500/';
   }
 
-  add(type) {
-    this.onAdd.emit({
+  toggle(operation) {
+    this.onToggle.emit({
       movie: this.movie,
-      type
+      operation
     });
   }
 }

@@ -1,6 +1,8 @@
 @import '~app/style/style';
 
 .home {
+  padding: 10px;
+
   .now-playing,
   .popular {
     margin-top: 2em;
@@ -14,11 +16,12 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #2196f3;
+      background-color: $blue;
     }
   }
 
   .subtitle {
+    color: $white;
     margin-left: 5px;
   }
 

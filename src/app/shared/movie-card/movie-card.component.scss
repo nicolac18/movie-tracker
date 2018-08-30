@@ -54,6 +54,12 @@
     width: 100%;
   }
 
+  .material-icons {
+    &.active {
+      color: $blue
+    }
+  }
+
   .title {
     box-sizing: border-box;
     padding: 0 1em;
