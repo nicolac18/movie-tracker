@@ -14,11 +14,15 @@ import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from '@app/shared/shared.module';
 
-import { HomeModule } from '@app/home/home.module';
+import { HomeComponent } from './home/home.component';
+import { LibraryComponent } from './library/library.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
+    HomeComponent,
+    LibraryComponent
   ],
   imports: [
     AppRoutingModule,
@@ -31,9 +35,7 @@ import { HomeModule } from '@app/home/home.module';
     MaterialModule,
 
     SharedModule,
-    CoreModule,
-
-    HomeModule
+    CoreModule
   ],
   providers: [],
   bootstrap: [

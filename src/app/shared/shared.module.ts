@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -14,7 +15,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 
     FlexLayoutModule,
 
-    MaterialModule
+    MaterialModule,
+
+    RouterModule
   ],
   declarations: [
     MovieCardComponent,
