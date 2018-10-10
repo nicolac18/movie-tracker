@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Movie } from '@app/core/movie/movie';
 
@@ -45,23 +46,33 @@ export class MovieService {
     return this.http.post<any>(url, movie);
   }
 
-  getMovies(type: string, page: number = 1): Observable<any> {
+  discoverMovies(query: any): Observable<any> {
+    const url = `${this.baseUrl}/discover/movies`;
+
+    return this.http.get<any>(url, { observe: 'response', params: query })
+      .pipe(
+        map(response => ({
+          data: response.body,
+          totalPages: response.headers.get('Total-Pages')
+      })));
+  }
+
+  getMovies(type: string, query: any): Observable<any> {
     let url = this.baseUrl;
 
     switch (type) {
       case 'nowPlay':
-        url += '/collections/atcinema?';
+        url += '/collections/atcinema';
         break;
       case 'popular':
-        url += '/collections/popular?';
+        url += '/collections/popular';
         break;
       default:
-        url += '/movie/latest?';
+        url += '/movie/latest';
         break;
     }
 
-    url += `page=${page}`;
-    return this.http.get<any>(url);
+    return this.http.get<any>(url, { params: query });
   }
 
   getMyMovies(page: number = 1): Observable<any> {

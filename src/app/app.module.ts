@@ -16,13 +16,15 @@ import { SharedModule } from '@app/shared/shared.module';
 
 import { HomeComponent } from './home/home.component';
 import { LibraryComponent } from './library/library.component';
+import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 
     HomeComponent,
-    LibraryComponent
+    LibraryComponent,
+    MoviesComponent,
   ],
   imports: [
     AppRoutingModule,

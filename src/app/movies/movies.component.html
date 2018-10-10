@@ -1,0 +1,11 @@
+<div class="movies">
+
+  <div fxLayout="row wrap" fxLayoutAlign="start start">
+    <app-movie-card fxFlex="0 0 10%" *ngFor="let movie of movies" (onToggle)="toggle($event)" [movie]="movie"></app-movie-card>
+  </div>
+
+  <div class="paginator">
+    <mat-paginator [length]="totPages" [pageSize]="itemsPerPage" (page)="onPaginatorChange($event)"></mat-paginator>
+  </div>
+
+</div>

@@ -1,35 +1,43 @@
 import { Component, OnInit } from '@angular/core';
+import { formatDate } from '@angular/common';
 
+import { Movie } from '@app/core/movie/movie';
 import { MovieService } from '@app/core/movie/movie.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-movies',
+  templateUrl: './movies.component.html',
+  styleUrls: ['./movies.component.scss']
 })
-export class HomeComponent implements OnInit {
-  nowPlayMovies: any[];
-  popularMovies: any[];
-  watchlistMovies: any[];
+export class MoviesComponent implements OnInit {
+  itemsPerPage: number;
+  movies: Movie[];
+  page: number;
+  totPages: number;
 
   constructor(private movieService: MovieService) { }
 
   ngOnInit() {
-    this.nowPlayMovies = [];
-    this.popularMovies = [];
-    this.watchlistMovies = [];
+    this.itemsPerPage = 20;
+    this.movies = [];
+    this.page = 1;
 
     this.initMovies();
   }
 
   initMovies(): void {
-    this.movieService.getMovies('nowPlay', { page: 1 }).subscribe(data => {
-      this.nowPlayMovies = data.slice(0, 16);
-    });
+    const release_date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
-    this.movieService.getMovies('popular', { page: 1 }).subscribe(data => {
-      this.popularMovies = data.slice(0, 16);
+    this.movieService.discoverMovies({ page: this.page, release_date }).subscribe(data => {
+      this.movies = data.data;
+      this.totPages = data.totalPages;
     });
+  }
+
+  onPaginatorChange(event) {
+    this.page = event.pageIndex + 1;
+
+    this.initMovies();
   }
 
   toggle({ movie, operation }) {
