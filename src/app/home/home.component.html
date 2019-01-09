@@ -9,14 +9,14 @@
 
   <div class="popular">
     <h2 class="subtitle">Popular</h2>
-    <div class="scroll-wrap" fxLayout="row" fxLayoutAlign="start start">
+    <div class="scroll-wrap" fxLayout="row wrap" fxLayoutAlign="start start">
       <app-movie-card fxFlex="0 0 12.5%" *ngFor="let movie of popularMovies" (onToggle)="toggle($event)" [movie]="movie"></app-movie-card>
     </div>
   </div>
 
   <div class="now-playing">
     <h2 class="subtitle">Now Playing</h2>
-    <div class="scroll-wrap" fxLayout="row" fxLayoutAlign="start start">
+    <div class="scroll-wrap" fxLayout="row wrap" fxLayoutAlign="start start">
       <app-movie-card fxFlex="0 0 12.5%" *ngFor="let movie of nowPlayMovies" (onToggle)="toggle($event)" [movie]="movie"></app-movie-card>
     </div>
   </div>

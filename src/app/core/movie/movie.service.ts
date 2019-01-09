@@ -93,4 +93,10 @@ export class MovieService {
 
     return this.http.put<any>(url, { wishlist: false });
   }
+
+  search(query: any) {
+    const url = `${this.baseUrl}/movies/search`;
+
+    return this.http.get<any>(url, { params: query });
+  }
 }

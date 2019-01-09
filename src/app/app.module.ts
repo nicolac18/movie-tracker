@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from '@app/theme/material.module';
 
@@ -17,6 +18,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { LibraryComponent } from './library/library.component';
 import { MoviesComponent } from './movies/movies.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { MoviesComponent } from './movies/movies.component';
     HomeComponent,
     LibraryComponent,
     MoviesComponent,
+    SearchComponent
   ],
   imports: [
     AppRoutingModule,
@@ -33,6 +36,7 @@ import { MoviesComponent } from './movies/movies.component';
     BrowserAnimationsModule,
 
     FlexLayoutModule,
+    FormsModule,
 
     MaterialModule,
 

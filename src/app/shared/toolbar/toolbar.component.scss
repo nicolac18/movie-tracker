@@ -6,6 +6,11 @@
   }
 
   .menu-item {
+    color: $white;
     margin-left: 1em;
+
+    &:hover {
+      color: $blue-dark;
+    }
   }
 }
