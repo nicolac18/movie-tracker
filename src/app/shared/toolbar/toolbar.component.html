@@ -1,13 +1,7 @@
 <mat-toolbar class="toolbar" color="primary" fxLayoutAlign="space-between center">
   <div fxLayoutAlign="start center">
+    <button class="sidenav-toggle" mat-icon-button (click)="toggleNavbar()" [hidden]="!mobile"><mat-icon>menu</mat-icon></button>
     <h1>Movie Tracker</h1>
-
-    <nav>
-      <a class="menu-item" routerLink="home">Home</a>
-      <a class="menu-item" routerLink="library">Library</a>
-      <a class="menu-item" routerLink="movies">Movies</a>
-      <a class="menu-item" routerLink="search">Search</a>
-    </nav>
   </div>
 
   <i class="material-icons">account_circle</i>

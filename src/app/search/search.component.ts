@@ -16,6 +16,11 @@ export class SearchComponent implements OnInit {
 
   constructor(private movieService: MovieService) { }
 
+  emptySearch() {
+    this.input = null;
+    this.movies = [];
+  }
+
   ngOnInit() {
     this.input = null;
 
@@ -33,19 +38,14 @@ export class SearchComponent implements OnInit {
 
     switch (type) {
       case 'watchlist':
-        this._toggleWatchlist(movie, operation[type]);
+        this.movieService.toggleWatchlist(movie, operation[type]);
         break;
       case 'wishlist':
-        this._toggleWishlist(movie, operation[type]);
+        this.movieService.toggleWishlist(movie, operation[type]);
         break;
       default:
         break;
     }
-  }
-
-  _emptySearch() {
-    this.input = null;
-    this.movies = [];
   }
 
   _initObservable() {
@@ -60,38 +60,8 @@ export class SearchComponent implements OnInit {
       if (data.value) {
         this.submitSearch(data.value);
       } else {
-        this._emptySearch();
+        this.emptySearch();
       }
     });
-  }
-
-  _toggleWatchlist(movie, operation) {
-    if (operation) {
-      this.movieService.addWatchlist(movie).subscribe((data) => {
-        Object.assign(movie, data);
-        if (movie.id === undefined) {
-          movie.id = movie._id;
-        }
-      });
-    } else {
-      this.movieService.removeWatchlist(movie).subscribe((data) => {
-        Object.assign(movie, data);
-      });
-    }
-  }
-
-  _toggleWishlist(movie, operation) {
-    if (operation) {
-      this.movieService.addWishlist(movie).subscribe((data) => {
-        Object.assign(movie, data);
-        if (movie.id === undefined) {
-          movie.id = movie._id;
-        }
-      });
-    } else {
-      this.movieService.removeWishlist(movie).subscribe((data) => {
-        Object.assign(movie, data);
-      });
-    }
   }
 }

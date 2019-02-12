@@ -8,7 +8,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 
 export class AppComponent implements OnDestroy, OnInit {
-  menu: { link: string; name: string; }[];
+  isOpen: boolean;
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
@@ -20,14 +20,15 @@ export class AppComponent implements OnDestroy, OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit() {
-    this.menu = [{
-      link: '.',
-      name: 'home'
-    }];
-  }
-
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  ngOnInit(): void {
+    this.isOpen = this.mobileQuery.matches ? false : true;
+  }
+
+  toggle(): void {
+    this.isOpen = !this.isOpen;
   }
 }

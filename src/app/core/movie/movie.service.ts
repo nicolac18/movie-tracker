@@ -99,4 +99,34 @@ export class MovieService {
 
     return this.http.get<any>(url, { params: query });
   }
+
+  toggleWatchlist(movie, operation) {
+    if (operation) {
+      this.addWatchlist(movie).subscribe((data) => {
+        Object.assign(movie, data);
+        if (movie.id === undefined) {
+          movie.id = movie._id;
+        }
+      });
+    } else {
+      this.removeWatchlist(movie).subscribe((data) => {
+        Object.assign(movie, data);
+      });
+    }
+  }
+
+  toggleWishlist(movie, operation) {
+    if (operation) {
+      this.addWishlist(movie).subscribe((data) => {
+        Object.assign(movie, data);
+        if (movie.id === undefined) {
+          movie.id = movie._id;
+        }
+      });
+    } else {
+      this.removeWishlist(movie).subscribe((data) => {
+        Object.assign(movie, data);
+      });
+    }
+  }
 }
