@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LoadService } from '@app/core/load/load.service';
 import { MovieService } from '@app/core/movie/movie.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class LibraryComponent implements OnInit {
   totPages: number;
   search: string;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private loadService: LoadService, private movieService: MovieService) { }
 
   ngOnInit() {
     this.itemsPerPage = 20;
@@ -25,9 +26,13 @@ export class LibraryComponent implements OnInit {
   }
 
   initMovies(): void {
+    this.loadService.setLoadingOn();
+
     this.movieService.getMyMovies(this.page).subscribe(data => {
       this.myMovies = data.data;
       this.totPages = data.totalPages;
+
+      this.loadService.setLoadingOff();
     });
   }
 

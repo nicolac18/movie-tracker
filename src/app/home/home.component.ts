@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LoadService } from '@app/core/load/load.service';
 import { MovieService } from '@app/core/movie/movie.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   popularMovies: any[];
   watchlistMovies: any[];
 
-  constructor(private movieService: MovieService) { }
+  constructor(private loadService: LoadService, private movieService: MovieService) { }
 
   ngOnInit() {
     this.nowPlayMovies = [];
@@ -23,12 +24,16 @@ export class HomeComponent implements OnInit {
   }
 
   initMovies(): void {
+    this.loadService.setLoadingOn();
+
     this.movieService.getMovies('nowPlay', { page: 1 }).subscribe(data => {
       this.nowPlayMovies = data.slice(0, 16);
+      this.loadService.setLoadingOff();
     });
 
     this.movieService.getMovies('popular', { page: 1 }).subscribe(data => {
       this.popularMovies = data.slice(0, 16);
+      this.loadService.setLoadingOff();
     });
   }
 

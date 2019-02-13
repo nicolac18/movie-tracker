@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
 
 import { Movie } from '@app/core/movie/movie';
+
+import { LoadService } from '@app/core/load/load.service';
 import { MovieService } from '@app/core/movie/movie.service';
 
 @Component({
@@ -15,7 +17,7 @@ export class MoviesComponent implements OnInit {
   page: number;
   totPages: number;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private loadService: LoadService, private movieService: MovieService) { }
 
   ngOnInit() {
     this.itemsPerPage = 20;
@@ -28,9 +30,13 @@ export class MoviesComponent implements OnInit {
   initMovies(): void {
     const release_date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
+    this.loadService.setLoadingOn();
+
     this.movieService.discoverMovies({ page: this.page, release_date }).subscribe(data => {
       this.movies = data.data;
       this.totPages = data.totalPages;
+
+      this.loadService.setLoadingOff();
     });
   }
 

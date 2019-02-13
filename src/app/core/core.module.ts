@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { LoadService } from '@app/core/load/load.service';
 import { MovieService } from '@app/core/movie/movie.service';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { MovieService } from '@app/core/movie/movie.service';
   ],
   declarations: [],
   providers: [
+    LoadService,
     MovieService
   ]
 })

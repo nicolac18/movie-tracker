@@ -13,6 +13,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content id="msc">
+      <app-spinner [hidden]="!isLoading"></app-spinner>
       <router-outlet (activate)="activate()"></router-outlet>
     </mat-sidenav-content>
 

@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/theme/material.module';
 
 import { MovieCardComponent } from './movie-card/movie-card.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
   ],
   declarations: [
     MovieCardComponent,
+    SpinnerComponent,
     ToolbarComponent
   ],
   exports: [
@@ -29,6 +31,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     FlexLayoutModule,
 
     MovieCardComponent,
+    SpinnerComponent,
     ToolbarComponent
   ]
 })

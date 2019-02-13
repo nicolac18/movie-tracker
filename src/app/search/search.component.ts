@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 
+import { LoadService } from '@app/core/load/load.service';
 import { MovieService } from '@app/core/movie/movie.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class SearchComponent implements OnInit {
 
   input: string;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private loadService: LoadService, private movieService: MovieService) { }
 
   emptySearch() {
     this.input = null;
@@ -28,8 +29,12 @@ export class SearchComponent implements OnInit {
   }
 
   submitSearch(input) {
+    this.loadService.setLoadingOn();
+
     this.movieService.search({ query: input }).subscribe(data => {
       this.movies = data;
+
+      this.loadService.setLoadingOff();
     });
   }
 
