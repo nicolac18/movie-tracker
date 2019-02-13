@@ -20,6 +20,10 @@ export class AppComponent implements OnDestroy, OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
+  activate() {
+    document.querySelector('#msc').scrollTo(0, 0);
+  }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }

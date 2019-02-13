@@ -36,6 +36,7 @@ export class MoviesComponent implements OnInit {
 
   onPaginatorChange(event) {
     this.page = event.pageIndex + 1;
+    document.querySelector('#msc').scrollTo(0, 0);
 
     this.initMovies();
   }

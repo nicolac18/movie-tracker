@@ -76,10 +76,14 @@ export class MovieService {
   }
 
   getMyMovies(page: number = 1): Observable<any> {
-    let url = `${this.baseUrl}/movies?`;
+    const url = `${this.baseUrl}/movies`;
 
-    url += `page=${page}`;
-    return this.http.get<any>(url);
+    return this.http.get<any>(url, { observe: 'response', params: { page: page.toString() } })
+      .pipe(
+        map(response => ({
+          data: response.body,
+          totalPages: response.headers.get('Total-Pages')
+      })));
   }
 
   removeWatchlist(movie: Movie): Observable<any> {

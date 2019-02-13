@@ -8,21 +8,34 @@ import { MovieService } from '@app/core/movie/movie.service';
   styleUrls: ['./library.component.scss']
 })
 export class LibraryComponent implements OnInit {
+  itemsPerPage: number;
   myMovies: any[];
+  page: number;
+  totPages: number;
   search: string;
 
   constructor(private movieService: MovieService) { }
 
   ngOnInit() {
+    this.itemsPerPage = 20;
     this.myMovies = [];
+    this.page = 1;
 
     this.initMovies();
   }
 
   initMovies(): void {
-    this.movieService.getMyMovies().subscribe(data => {
-      this.myMovies = data;
+    this.movieService.getMyMovies(this.page).subscribe(data => {
+      this.myMovies = data.data;
+      this.totPages = data.totalPages;
     });
+  }
+
+  onPaginatorChange(event) {
+    this.page = event.pageIndex + 1;
+    document.querySelector('#msc').scrollTo(0, 0);
+
+    this.initMovies();
   }
 
   toggle({ movie, operation }) {
