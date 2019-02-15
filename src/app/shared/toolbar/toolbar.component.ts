@@ -7,9 +7,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ToolbarComponent {
   @Input() mobile: boolean;
+  @Output() logout = new EventEmitter();
   @Output() toggle = new EventEmitter();
 
   constructor() { }
+
+  logoutUser() {
+    this.logout.emit();
+  }
 
   toggleNavbar() {
     this.toggle.emit();

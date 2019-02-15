@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({ providedIn: 'root', })
 export class LoadService {
   public loading$: EventEmitter<boolean>;
   private loading = false;

@@ -1,0 +1,29 @@
+<div class="main">
+  <app-toolbar [mobile]="mobileQuery.matches" (logout)="logout()" (toggle)="toggle()"></app-toolbar>
+
+  <mat-sidenav-container class="sidenav" [hasBackdrop]="false">
+
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'push' : 'side'" [opened]="isOpen" fixedTopGap="56">
+      <mat-nav-list>
+        <a class="menu-item" mat-list-item routerLink="/home">
+          <mat-icon>home</mat-icon> <span>Home</span>
+        </a>
+        <a class="menu-item" mat-list-item routerLink="/library">
+          <mat-icon>video_library</mat-icon> <span>Library</span>
+        </a>
+        <a class="menu-item" mat-list-item routerLink="/movies">
+          <mat-icon>movie</mat-icon> <span>Movies</span>
+        </a>
+        <a class="menu-item" mat-list-item routerLink="/search">
+          <mat-icon>search</mat-icon> <span>Search</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content id="msc">
+      <app-spinner [hidden]="!isLoading"></app-spinner>
+      <router-outlet (activate)="activate()"></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

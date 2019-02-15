@@ -8,7 +8,7 @@ import { Movie } from '@app/core/movie/movie';
 
 import { environment } from '@env/environment';
 
-@Injectable()
+@Injectable({ providedIn: 'root', })
 export class MovieService {
   baseUrl: string;
 
