@@ -12,7 +12,7 @@ export class LibraryComponent implements OnInit {
   itemsPerPage: number;
   myMovies: any[];
   page: number;
-  totPages: number;
+  totResults: number;
   search: string;
 
   constructor(private loadingService: LoadingService, private movieService: MovieService) { }
@@ -30,7 +30,7 @@ export class LibraryComponent implements OnInit {
 
     this.movieService.getMyMovies(this.page).subscribe(data => {
       this.myMovies = data.data;
-      this.totPages = data.totalPages;
+      this.totResults = data.totalResults;
 
       this.loadingService.setLoadingOff();
     });

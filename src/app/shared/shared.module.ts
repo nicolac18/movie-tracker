@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '@app/theme/material.module';
 
+import { FilterComponent } from './filter/filter.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -21,6 +22,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     RouterModule
   ],
   declarations: [
+    FilterComponent,
     MovieCardComponent,
     SpinnerComponent,
     ToolbarComponent
@@ -30,6 +32,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 
     FlexLayoutModule,
 
+    FilterComponent,
     MovieCardComponent,
     SpinnerComponent,
     ToolbarComponent

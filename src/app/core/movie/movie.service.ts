@@ -61,7 +61,7 @@ export class MovieService {
         catchError(this.errorHandler.handleError),
         map(response => ({
           data: response.body,
-          totalPages: response.headers.get('Total-Pages'),
+          totalResults: response.headers.get('Total-Results'),
         }))
       );
   }
@@ -92,7 +92,7 @@ export class MovieService {
         catchError(this.errorHandler.handleError),
         map(response => ({
           data: response.body,
-          totalPages: response.headers.get('Total-Pages'),
+          totalResults: response.headers.get('Total-Results'),
         }))
       );
   }
