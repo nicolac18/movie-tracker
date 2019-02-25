@@ -3,7 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '@app/core/authentication/authentication.service';
-import { LoadService } from '@app/core/load/load.service';
+import { LoadingService } from '@app/core/loading/loading.service';
 
 @Component({
   selector: 'app-main',
@@ -19,14 +19,14 @@ export class MainComponent implements OnDestroy, OnInit {
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
-    private authService: AuthenticationService, private loadService: LoadService, private router: Router
+    private authService: AuthenticationService, private loadingService: LoadingService, private router: Router
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
 
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
-    loadService.loading$.subscribe(loading => this._setLoading(loading));
+    loadingService.loading$.subscribe(loading => this._setLoading(loading));
   }
 
   activate() {

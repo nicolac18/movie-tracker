@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AuthenticationService } from '@app/core/authentication/authentication.service';
-import { LoadService } from '@app/core/load/load.service';
+import { ErrorHandlerService } from './error-handler/error-handler.service';
+import { LoadingService } from '@app/core/loading/loading.service';
 import { MovieService } from '@app/core/movie/movie.service';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MovieService } from '@app/core/movie/movie.service';
   declarations: [],
   providers: [
     AuthenticationService,
-    LoadService,
+    ErrorHandlerService,
+    LoadingService,
     MovieService
   ]
 })

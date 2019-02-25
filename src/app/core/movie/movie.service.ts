@@ -2,24 +2,27 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { Movie } from '@app/core/movie/movie';
 
 import { environment } from '@env/environment';
 
-@Injectable({ providedIn: 'root', })
+import { ErrorHandlerService } from '@app/core/error-handler/error-handler.service';
+
+@Injectable({ providedIn: 'root' })
 export class MovieService {
   baseUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private errorHandler: ErrorHandlerService, private http: HttpClient) {
     this.baseUrl = environment.baseUrl;
   }
 
   addMovie(movie: Movie): Observable<any> {
     const url = `${this.baseUrl}/movies`;
 
-    return this.http.post<any>(url, movie);
+    return this.http.post<any>(url, movie)
+      .pipe(catchError(this.errorHandler.handleError));
   }
 
   addWatchlist(movie: Movie): Observable<any> {
@@ -27,11 +30,13 @@ export class MovieService {
 
     if (movie.id) {
       url += `/${movie.id}`;
-      return this.http.put<any>(url, { watched: new Date() });
+      return this.http.put<any>(url, { watched: new Date() })
+        .pipe(catchError(this.errorHandler.handleError));
     }
 
     movie.watched = new Date();
-    return this.http.post<any>(url, movie);
+    return this.http.post<any>(url, movie)
+      .pipe(catchError(this.errorHandler.handleError));
   }
 
   addWishlist(movie: Movie): Observable<any> {
@@ -39,11 +44,13 @@ export class MovieService {
 
     if (movie.id) {
       url += `/${movie.id}`;
-      return this.http.put<any>(url, { wishlist: true });
+      return this.http.put<any>(url, { wishlist: true })
+        .pipe(catchError(this.errorHandler.handleError));
     }
 
     movie.wishlist = true;
-    return this.http.post<any>(url, movie);
+    return this.http.post<any>(url, movie)
+      .pipe(catchError(this.errorHandler.handleError));
   }
 
   discoverMovies(query: any): Observable<any> {
@@ -51,10 +58,12 @@ export class MovieService {
 
     return this.http.get<any>(url, { observe: 'response', params: query })
       .pipe(
+        catchError(this.errorHandler.handleError),
         map(response => ({
           data: response.body,
-          totalPages: response.headers.get('Total-Pages')
-      })));
+          totalPages: response.headers.get('Total-Pages'),
+        }))
+      );
   }
 
   getMovies(type: string, query: any): Observable<any> {
@@ -80,28 +89,33 @@ export class MovieService {
 
     return this.http.get<any>(url, { observe: 'response', params: { page: page.toString() } })
       .pipe(
+        catchError(this.errorHandler.handleError),
         map(response => ({
           data: response.body,
-          totalPages: response.headers.get('Total-Pages')
-      })));
+          totalPages: response.headers.get('Total-Pages'),
+        }))
+      );
   }
 
   removeWatchlist(movie: Movie): Observable<any> {
     const url = `${this.baseUrl}/movies/${movie.id}`;
 
-    return this.http.put<any>(url, { watched: null });
+    return this.http.put<any>(url, { watched: null })
+      .pipe(catchError(this.errorHandler.handleError));
   }
 
   removeWishlist(movie: Movie): Observable<any> {
     const url = `${this.baseUrl}/movies/${movie.id}`;
 
-    return this.http.put<any>(url, { wishlist: false });
+    return this.http.put<any>(url, { wishlist: false })
+      .pipe(catchError(this.errorHandler.handleError));
   }
 
   search(query: any) {
     const url = `${this.baseUrl}/movies/search`;
 
-    return this.http.get<any>(url, { params: query });
+    return this.http.get<any>(url, { params: query })
+      .pipe(catchError(this.errorHandler.handleError));
   }
 
   toggleWatchlist(movie, operation) {
