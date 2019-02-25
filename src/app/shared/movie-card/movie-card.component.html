@@ -1,0 +1,17 @@
+<mat-card class="movie-card">
+  <div class="container">
+    <div class="content">
+
+      <p class="title" *ngIf="!movie.poster_path">{{ movie.title }}</p>
+      <img class="image" *ngIf="movie.poster_path" [src]="baseImgUrl + movie.poster_path">
+
+      <div class="tools">
+        <i class="material-icons" *ngIf="!movie.wishlist" (click)="toggle({ wishlist: true })">add</i>
+        <i class="material-icons" *ngIf="movie.wishlist" (click)="toggle({ wishlist: false })">remove</i>
+
+        <i class="material-icons" [ngClass]="{ 'active': movie.watched }" (click)="toggle({ watchlist: movie.watched ? false : true })">remove_red_eye</i>
+      </div>
+
+    </div>
+  </div>
+</mat-card>

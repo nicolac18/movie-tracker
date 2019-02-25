@@ -1,0 +1,28 @@
+<div class="registration">
+  <div>
+    <p>Registration</p>
+  </div>
+
+  <form class="form">
+    <mat-form-field class="full-width">
+      <input [formControl]="formControl.email" matInput name="email" placeholder="Email" type="email">
+      <mat-error *ngIf="formControl.email.hasError('email') && !formControl.email.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="formControl.email.hasError('required')">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input [formControl]="formControl.password" matInput name="password" placeholder="Password" type="password">
+      <mat-error *ngIf="formControl.password.hasError('required')">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button mat-raised-button (click)="register()" color="primary">Sign In</button>
+    </div>
+  </form>
+</div>

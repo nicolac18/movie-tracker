@@ -1,0 +1,21 @@
+<div class="filter">
+  <form class="form" fxLayout="row" fxLayoutAlign="start center">
+    <mat-form-field class="input">
+      <mat-select placeholder="Year" (selectionChange)="filterChanged('year', $event)">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let year of years" [value]="year">
+          {{ year }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-select placeholder="Sort By" (selectionChange)="filterChanged('sort_by', $event)">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let sort of sorting" [value]="sort.value">
+          {{ sort.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>

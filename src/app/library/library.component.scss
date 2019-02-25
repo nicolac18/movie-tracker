@@ -1,0 +1,15 @@
+@import '~app/style/style';
+
+.library {
+  padding: 10px;
+
+  .search-form {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+
+    .search-input {
+      width: 100%;
+    }
+  }
+}

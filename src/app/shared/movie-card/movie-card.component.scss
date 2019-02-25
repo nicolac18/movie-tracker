@@ -1,0 +1,72 @@
+@import '~app/style/style';
+
+.movie-card {
+  display: block;
+  margin: 5px;
+  padding: 0;
+  position: relative;
+
+  .container {
+    @include maintain-ratio(2 3);
+  }
+
+  .content {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    &:hover {
+      .tools {
+        display: flex;
+      }
+    }
+
+    .tools {
+      align-items: center;
+      background-color: $black-transparent;
+      box-sizing: border-box;
+      display: none;
+      flex-direction: row;
+      height: 100%;
+      justify-content: space-around;
+      padding: 5px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+
+      i {
+        cursor: pointer;
+        font-size: $fs-icon;
+
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+
+  .image {
+    border-radius: 2px;
+    height: 100%;
+    margin: auto;
+    width: 100%;
+  }
+
+  .material-icons {
+    &.active {
+      color: $blue
+    }
+  }
+
+  .title {
+    box-sizing: border-box;
+    padding: 0 1em;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(0%, -50%);
+    width: 100%;
+  }
+}
