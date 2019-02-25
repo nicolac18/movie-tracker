@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -11,7 +12,7 @@ import { ErrorHandlerService } from '@app/core/error-handler/error-handler.servi
 export class AuthenticationService {
   baseUrl: string;
 
-  constructor(private errorHandler: ErrorHandlerService, private http: HttpClient) {
+  constructor(private errorHandler: ErrorHandlerService, private http: HttpClient, private jwtHelperService: JwtHelperService) {
     this.baseUrl = environment.baseUrl;
   }
 
@@ -20,7 +21,7 @@ export class AuthenticationService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('access_token') !== null;
+    return localStorage.getItem('access_token') !== null && !this.jwtHelperService.isTokenExpired(localStorage.getItem('access_token'));
   }
 
   login(email: string, password: string): Observable<any> {
